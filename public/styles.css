@@ -1,3 +1,29 @@
+body{
+  font-family: Helvetica, Arial, sans-serif;
+  background: url('felt_pattern.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: .5s ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0;
+  transition: .5s ease-in;
+}
+
+
 /* entire container, keeps perspective */
 .flip-container {
 	perspective: 1000;
@@ -55,12 +81,14 @@
 /* front pane, placed above back */
 .front {
 	z-index: 2;
+  opacity:0.9;
 	/* for firefox 31 */
 	transform: rotateY(0deg);
 }
 
 /* back, initially hidden pane */
 .back {
+  opacity:0.9;
 	transform: rotateY(180deg);
 }
 
