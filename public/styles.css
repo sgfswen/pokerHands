@@ -102,9 +102,9 @@ h1 {
   margin: 30px auto;
 }
 
-/* Slightly modified version from the original: http://selfthinker.github.io/CSS-Playing-Cards/ */
 
 /* Card basic structure and positioning (Including front and back) */
+/* Slightly modified version from the original: http://selfthinker.github.io/CSS-Playing-Cards/ */
 
 .card {
   width: 6em;
