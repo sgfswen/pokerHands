@@ -1,40 +1,45 @@
-body{
-  font-family: Helvetica, Arial, sans-serif;
-  background: url('felt_pattern.jpg') no-repeat center center fixed;
-  background-size: cover;
-  color: #fff;
+/*
+ * Basic layout
+ */
+
+ * {
+   box-sizing: border-box;
+ }
+body {
+  background: #eee;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+h1 {
+  font-weight: 300;
+  color: #3b414c;
+  font-size: 2em;
 }
 
+/*
+ * Transition Group Animations
+ */
+
+/* Fade in/out */
 .fade-enter {
   opacity: 0;
 }
-
 .fade-enter.fade-enter-active {
   opacity: 1;
   transition: .5s ease-in;
 }
-
 .fade-leave {
   opacity: 1;
 }
-
 .fade-leave.fade-leave-active {
   opacity: 0;
   transition: .5s ease-in;
 }
 
-
-/* entire container, keeps perspective */
-.flip-container {
-	perspective: 1000;
-}
-
-/* flip the pane when showed */
+/* Card flip */
 .card-enter {
   opacity: 0;
 	transform: rotateY(180deg);
 }
-
 /* flip the pane when showed */
 .card-enter.card-enter-active {
   transition-delay: 0.35s;
@@ -42,12 +47,10 @@ body{
   opacity: 1;
 	transform: rotateY(0deg);
 }
-
 /* flip the pane when showed */
 .card-leave {
 	transform: rotateY(0deg);
 }
-
 /* flip the pane when showed */
 .card-leave.card-leave-active {
 	transform: rotateY(180deg);
@@ -55,44 +58,54 @@ body{
 
 }
 
-
-.flip-container, .front, .back {
-	width: 6em;
-	height: 8.5em;
-}
-
 /* flip speed goes here */
-.flipper {
+.card-group {
 	transition: 0.6s;
 	transform-style: preserve-3d;
 	position: relative;
   transform-origin: 3em 4em; /* half of height */
 }
 
-/* hide back of pane during swap */
-.front, .back {
-	backface-visibility: hidden;
 
-	position: absolute;
-	top: 0;
-	left: 0;
+ /* Interface Elements */
+ .game {
+    width: 35em;
+    margin: auto;
+ }
+
+ .cards, .controls {
+    position: relative;
+ }
+
+ .cards {
+   top: 5em;
+ }
+ .controls {
+   top: 14em;
+ }
+
+.card-rank {
+  position:absolute;
 }
 
-/* front pane, placed above back */
-.front {
-	z-index: 2;
-  opacity:0.9;
-	/* for firefox 31 */
-	transform: rotateY(0deg);
+.card-hold {
+  display: inline-block;
+  width: 6em;
+  margin-right: 1em;
+  text-align: center;
 }
 
-/* back, initially hidden pane */
-.back {
-  opacity:0.9;
-	transform: rotateY(180deg);
+.card-deal {
+  display: block;
+  width: 200px;
+  font-size: 21px;
+  margin: 30px auto;
 }
 
 /* Slightly modified version from the original: http://selfthinker.github.io/CSS-Playing-Cards/ */
+
+/* Card basic structure and positioning (Including front and back) */
+
 .card {
   width: 6em;
   height: 8.5em;
@@ -106,6 +119,36 @@ body{
   text-align: left;
   -webkit-box-align: baseline;
 }
+
+/* hide back of pane during swap */
+.card.front, .card.back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.card.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+
+.card.back {
+  /* back, initially hidden pane */
+	transform: rotateY(180deg);
+  background: linear-gradient(135deg, #EC4444 25%, transparent 25%) -1em 0,
+    linear-gradient(225deg, #EC4444 25%, transparent 25%) -1em 0,
+    linear-gradient(315deg, #EC4444 25%, transparent 25%),
+    linear-gradient(45deg, #EC4444 25%, transparent 25%);
+  background-size: 2em 2em;
+  background-color: #FFF;
+}
+
+
+/* Playing Card-style layouts */
 .card:after {
     position: absolute;
     bottom: .25em;
@@ -125,19 +168,9 @@ body{
   content: "♦";
 }
 
-.back.card {
-  background: linear-gradient(135deg, #EC4444 25%, transparent 25%) -12px 0,
-    linear-gradient(225deg, #EC4444 25%, transparent 25%) -12px 0,
-    linear-gradient(315deg, #EC4444 25%, transparent 25%),
-    linear-gradient(45deg, #EC4444 25%, transparent 25%);
-  background-size: 24px 24px;
-  background-color: #FFF;
 
-
-}
 /* Default to black for Spades and Clubs */
-
-.flipper span,
+.card-group span,
 .card:after {
     display: block;
     letter-spacing: -.1em;
@@ -146,7 +179,6 @@ body{
     line-height: .9;
 }
 /* Hearts and diamonds are red */
-
 .card.hearts,
 .card.diamonds {
     color: #F00;
