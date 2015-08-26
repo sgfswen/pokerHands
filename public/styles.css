@@ -1,27 +1,32 @@
 /* entire container, keeps perspective */
 .flip-container {
-  margin:10px;
-  display:block;
-  float:left;
 	perspective: 1000;
 }
 
-.fade-enter {
-  opacity: 0.01;
+/* flip the pane when showed */
+.card-enter {
+  opacity: 0;
+	transform: rotateY(180deg);
 }
 
-.fade-enter.fade-enter-active {
+/* flip the pane when showed */
+.card-enter.card-enter-active {
+  transition-delay: 0.35s;
+  transition-timing-function: ease-in;
   opacity: 1;
-  transition: opacity .50s ease-out;
+	transform: rotateY(0deg);
 }
 
-.fade-leave {
-  opacity: 1;
+/* flip the pane when showed */
+.card-leave {
+	transform: rotateY(0deg);
 }
 
-.fade-leave.fade-leave-active {
-  opacity: 0.01;
-  transition: opacity .50s ease-out;
+/* flip the pane when showed */
+.card-leave.card-leave-active {
+	transform: rotateY(180deg);
+  transition-timing-function: ease-out;
+
 }
 
 
@@ -34,8 +39,8 @@
 .flipper {
 	transition: 0.6s;
 	transform-style: preserve-3d;
-
 	position: relative;
+  transform-origin: 3em 4em; /* half of height */
 }
 
 /* hide back of pane during swap */
@@ -61,20 +66,17 @@
 
 /* Slightly modified version from the original: http://selfthinker.github.io/CSS-Playing-Cards/ */
 .card {
-  -webkit-user-select: none;
-    user-select: none;
-    cursor: pointer;
-    width: 6em;
-    height: 8.5em;
-    padding: .25em 0;
-    background: #FFF;
-    border: solid 1px #999;
-    -moz-border-radius: .5em;
-    border-radius: .5em;
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-    color: #000;
-    text-align: left;
-    -webkit-box-align: baseline;
+  width: 6em;
+  height: 8.5em;
+  padding: .25em 0;
+  background: #FFF;
+  border: solid 1px #999;
+  -moz-border-radius: .5em;
+  border-radius: .5em;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  color: #000;
+  text-align: left;
+  -webkit-box-align: baseline;
 }
 .card:after {
     position: absolute;
