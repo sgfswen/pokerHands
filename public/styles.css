@@ -1,7 +1,9 @@
 
 /* Slightly modified version from the original: http://selfthinker.github.io/CSS-Playing-Cards/ */
 .card {
-    float:left;
+  -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
     margin: 6px;
     width: 6em;
     height: 8.5em;
@@ -137,7 +139,7 @@ span,
 }
 /* One pip */
 
-.v1 .rank:after,
+.v14 .rank:after,
 .v5 .rank:after,
 .v7 .rank:after,
 .v9 .rank:after
@@ -146,7 +148,7 @@ span,
 {
     line-height: 4;
 }
-.v1 .rank::after,
+.v14 .rank::after,
 .v11 .suit:after,
 .v12 .suit:after,
 .v13 .suit:after {
