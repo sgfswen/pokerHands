@@ -1,11 +1,7 @@
-React App Boilerplate
-=====================
+Poker Hands
+===========
 
-Quickstart project template for building React applications.
-
-### Objective
-
-This boilerplate is purposefully simple to show the minimal setup needed to create React Applications. Since its main usage is for React learning, it is opinionated to create a better developer experience over build speed.
+Sample material for studying ReactCSSTransitionGroup
 
 ### Usage
 
