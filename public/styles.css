@@ -1,0 +1,177 @@
+
+/* Slightly modified version from the original: http://selfthinker.github.io/CSS-Playing-Cards/ */
+.card {
+    float:left;
+    margin: 6px;
+    width: 6em;
+    height: 8.5em;
+    padding: .25em 0;
+    background: #FFF;
+    border: solid 1px #999;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    color: #000;
+    position: relative;
+    text-align: left;
+    -webkit-box-align: baseline;
+}
+.card:after {
+    position: absolute;
+    bottom: .25em;
+    right: .15em;
+}
+
+.card.spades:after {
+  content: "♠";
+}
+.card.hearts:after {
+  content: "♥";
+}
+.card.clubs:after {
+  content: "♣";
+}
+.card.diamonds:after {
+  content: "♦";
+}
+
+.card.back {
+  background: linear-gradient(135deg, #EC4444 25%, transparent 25%) -12px 0,
+    linear-gradient(225deg, #EC4444 25%, transparent 25%) -12px 0,
+    linear-gradient(315deg, #EC4444 25%, transparent 25%),
+    linear-gradient(45deg, #EC4444 25%, transparent 25%);
+  background-size: 24px 24px;
+  background-color: #FFF;
+
+
+}
+/* Default to black for Spades and Clubs */
+
+span,
+.card:after {
+    display: block;
+    letter-spacing: -.1em;
+    text-align: center;
+    width: .8em;
+    line-height: .9;
+}
+/* Hearts and diamonds are red */
+
+.card.hearts,
+.card.diamonds {
+    color: #F00;
+}
+/* 3 columns of pips, maximum of 4 pips per column */
+
+.card span:before,
+.card span:after {
+    width: .8em;
+    font-size: 1.75em;
+    height: 4em;
+    line-height: 9;
+    position: absolute;
+    top: .5em;
+    left: .55em;
+    overflow: hidden;
+}
+.card.hearts span:before,
+.card.hearts .rank:after {
+    content: "♥ ♥ ♥ ♥"
+}
+.card.diamonds span:before,
+.card.diamonds .rank:after {
+    content: "♦ ♦ ♦ ♦"
+}
+.card.spades span:before,
+.card.spades .rank:after {
+    content: "♠ ♠ ♠ ♠"
+}
+.card.clubs span:before,
+.card.clubs .rank:after {
+    content: "♣ ♣ ♣ ♣"
+}
+/* Centre column of pips */
+
+.card .rank:after {
+    left: 1.35em;
+}
+/* Right column of pips */
+
+.card .suit:before {
+    left: 2.1em;
+}
+/* Four pips */
+
+.v8 span:before,
+.v9 span:before,
+.v10 span:before
+/* L/R: 8, 9, 10 */
+
+{
+    line-height: 1
+}
+/* Three pips */
+
+.v6 span:before,
+.v7 span:before,
+/* L/R: 6, 7 */
+
+.v3 .rank:after
+/* C: 3 */
+
+{
+    line-height: 1.333;
+}
+/* Two pips */
+
+.v4 span:before,
+.v5 span:before,
+/* L/R: 4, 5 */
+
+.v2 .rank:after,
+.v10 .rank:after
+/* C: 2, 10 */
+
+{
+    line-height: 2;
+}
+/* One pip */
+
+.v1 .rank:after,
+.v5 .rank:after,
+.v7 .rank:after,
+.v9 .rank:after
+/* C: A, 5, 7, 9 */
+
+{
+    line-height: 4;
+}
+.v1 .rank::after,
+.v11 .suit:after,
+.v12 .suit:after,
+.v13 .suit:after {
+    width: .95em;
+    height: 1.2em;
+    font: 5.2em/1.2 Georgia, serif;
+    text-align: center;
+    left: .1em;
+    top: .2em;
+}
+
+.v11 .suit:after,
+.v12 .suit:after,
+.v13 .suit:after {
+    left: .06em;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.v11 .suit:after {
+    content: "J"
+}
+.v12 .suit:after {
+    content: "Q"
+}
+.v13 .suit:after {
+    content: "K"
+}
