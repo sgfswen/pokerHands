@@ -13,11 +13,9 @@ h1 {
   font-weight: 300;
   color: #3b414c;
   font-size: 2em;
+  animation-duration: 3s;
 }
 
-/*
- * Transition Group Animations
- */
 
 /* Fade in/out */
 .fade-enter {
@@ -33,36 +31,59 @@ h1 {
 .fade-leave.fade-leave-active {
   opacity: 0;
   transition: .5s ease-in;
+
 }
 
-/* Card flip */
+
+/*
+ * Transition Group Animations
+ */
+@keyframes card-in {
+  0% {
+   transform: rotateY(180deg) translateY(-9em);
+   opacity:0
+  }
+  60% {
+    transform: rotateY(180deg) translateY(0);
+    opacity:1
+  }
+  100% {
+   transform: rotateY(0deg) translateY(0);
+   opacity:1
+  }
+}
+
+
+@keyframes card-out {
+  0% {
+   transform: rotateY(0deg);
+  }
+  40% {
+    transform: rotateY(180deg);
+    opacity:1
+  }
+  100% {
+   transform: rotateY(180deg) translateY(-9em);
+   opacity: 0
+  }
+}
+
 .card-enter {
-  opacity: 0;
-	transform: rotateY(180deg);
+  animation-name: card-in;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-fill-mode: both;
 }
-/* flip the pane when showed */
-.card-enter.card-enter-active {
-  transition-delay: 0.35s;
-  transition-timing-function: ease-in;
-  opacity: 1;
-	transform: rotateY(0deg);
-}
-/* flip the pane when showed */
+
 .card-leave {
-	transform: rotateY(0deg);
-}
-/* flip the pane when showed */
-.card-leave.card-leave-active {
-	transform: rotateY(180deg);
-  transition-timing-function: ease-out;
+  animation-name: card-out;
+  animation-duration: 1s;
 
 }
 
 /* flip speed goes here */
 .card-group {
-	transition: 0.6s;
 	transform-style: preserve-3d;
-	position: relative;
   transform-origin: 3em 4em; /* half of height */
 }
 
@@ -104,20 +125,16 @@ h1 {
 
 
 /* Card basic structure and positioning (Including front and back) */
-/* Slightly modified version from the original: http://selfthinker.github.io/CSS-Playing-Cards/ */
+/* Slightly modified version from the original: http://selfthinker.github.io/CSS-Playing-Cards/ (CC BY-SA) */
 
 .card {
   width: 6em;
-  height: 8.5em;
+  height: 9em;
   padding: .25em 0;
   background: #FFF;
-  border: solid 1px #999;
-  -moz-border-radius: .5em;
   border-radius: .5em;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-  color: #000;
-  text-align: left;
-  -webkit-box-align: baseline;
+
 }
 
 /* hide back of pane during swap */
@@ -150,28 +167,15 @@ h1 {
 
 /* Playing Card-style layouts */
 .card:after {
-    position: absolute;
-    bottom: .25em;
-    right: .15em;
+  position: absolute;
+  bottom: .25em;
+  right: .15em;
+  content: attr(data-index);
+  transform: rotate(180deg);
 }
-
-.card.spades:after {
-  content: "♠";
-}
-.card.hearts:after {
-  content: "♥";
-}
-.card.clubs:after {
-  content: "♣";
-}
-.card.diamonds:after {
-  content: "♦";
-}
-
 
 /* Default to black for Spades and Clubs */
-.card-group span,
-.card:after {
+.card-group span, .card:after {
     display: block;
     letter-spacing: -.1em;
     text-align: center;
@@ -179,14 +183,12 @@ h1 {
     line-height: .9;
 }
 /* Hearts and diamonds are red */
-.card.hearts,
-.card.diamonds {
+.card.hearts, .card.diamonds {
     color: #F00;
 }
-/* 3 columns of pips, maximum of 4 pips per column */
 
-.card span:before,
-.card span:after {
+/* 3 columns of pips, maximum of 4 pips per column */
+.card span:before, .card span:after {
     width: .8em;
     font-size: 1.75em;
     height: 4em;
@@ -196,82 +198,56 @@ h1 {
     left: .55em;
     overflow: hidden;
 }
-.card.hearts span:before,
-.card.hearts .rank:after {
+.card.hearts span:before, .card.hearts .rank:after {
     content: "♥ ♥ ♥ ♥"
 }
-.card.diamonds span:before,
-.card.diamonds .rank:after {
+.card.diamonds span:before,.card.diamonds .rank:after {
     content: "♦ ♦ ♦ ♦"
 }
-.card.spades span:before,
-.card.spades .rank:after {
+.card.spades span:before,.card.spades .rank:after {
     content: "♠ ♠ ♠ ♠"
 }
-.card.clubs span:before,
-.card.clubs .rank:after {
+.card.clubs span:before,.card.clubs .rank:after {
     content: "♣ ♣ ♣ ♣"
 }
-/* Centre column of pips */
 
+/* Centre column of pips */
 .card .rank:after {
-    left: 1.35em;
+    left: 1.3em;
 }
 /* Right column of pips */
-
 .card .suit:before {
-    left: 2.1em;
+    left: 2em;
 }
+
 /* Four pips */
-
-.v8 span:before,
-.v9 span:before,
-.v10 span:before
-/* L/R: 8, 9, 10 */
-
+.v8 span:before, .v9 span:before, .v10 span:before /* L/R: 8, 9, 10 */
 {
     line-height: 1
 }
+
 /* Three pips */
-
-.v6 span:before,
-.v7 span:before,
-/* L/R: 6, 7 */
-
-.v3 .rank:after
-/* C: 3 */
-
+.v6 span:before, .v7 span:before, /* L/R: 6, 7 */
+.v3 .rank:after /* C: 3 */
 {
     line-height: 1.333;
 }
+
 /* Two pips */
-
-.v4 span:before,
-.v5 span:before,
-/* L/R: 4, 5 */
-
-.v2 .rank:after,
-.v10 .rank:after
-/* C: 2, 10 */
-
+.v4 span:before,.v5 span:before,/* L/R: 4, 5 */
+.v2 .rank:after,.v10 .rank:after/* C: 2, 10 */
 {
     line-height: 2;
 }
+
 /* One pip */
-
-.v14 .rank:after,
-.v5 .rank:after,
-.v7 .rank:after,
-.v9 .rank:after
-/* C: A, 5, 7, 9 */
-
+.v14 .rank:after,.v5 .rank:after,.v7 .rank:after,.v9 .rank:after/* C: A, 5, 7, 9 */
 {
     line-height: 4;
 }
-.v14 .rank::after,
-.v11 .suit:after,
-.v12 .suit:after,
-.v13 .suit:after {
+
+/* Face cards */
+.v11 .suit:after,.v12 .suit:after,.v13 .suit:after, .v14 .rank:after {
     width: .95em;
     height: 1.2em;
     font: 5.2em/1.2 Georgia, serif;
@@ -280,20 +256,12 @@ h1 {
     top: .2em;
 }
 
-.v11 .suit:after,
-.v12 .suit:after,
-.v13 .suit:after {
-    left: .06em;
-    font-style: italic;
-    font-weight: bold;
-}
-
 .v11 .suit:after {
-    content: "J"
+    content: "♟"
 }
 .v12 .suit:after {
-    content: "Q"
+    content: "♛"
 }
 .v13 .suit:after {
-    content: "K"
+    content: "♚"
 }
