@@ -13,25 +13,39 @@ h1 {
   font-weight: 300;
   color: #3b414c;
   font-size: 2em;
-  animation-duration: 3s;
 }
 
+ /* Interface Elements */
+.game {
+  width: 35em;
+  margin: auto;
+}
+.cards, .controls {
+  position: relative;
+}
+.cards {
+  top: 5em;
+}
+.controls {
+  top: 14em;
+}
 
-/* Fade in/out */
-.fade-enter {
-  opacity: 0;
+.card-rank {
+  position:absolute;
 }
-.fade-enter.fade-enter-active {
-  opacity: 1;
-  transition: .5s ease-in;
-}
-.fade-leave {
-  opacity: 1;
-}
-.fade-leave.fade-leave-active {
-  opacity: 0;
-  transition: .5s ease-in;
 
+.card-hold {
+  display: inline-block;
+  width: 6em;
+  margin-right: 1em;
+  text-align: center;
+}
+
+.card-deal {
+  display: block;
+  width: 200px;
+  font-size: 21px;
+  margin: 30px auto;
 }
 
 
@@ -52,7 +66,6 @@ h1 {
    opacity:1
   }
 }
-
 
 @keyframes card-out {
   0% {
@@ -78,54 +91,15 @@ h1 {
 .card-leave {
   animation-name: card-out;
   animation-duration: 1s;
-
-}
-
-/* flip speed goes here */
-.card-group {
-	transform-style: preserve-3d;
-  transform-origin: 3em 4em; /* half of height */
-}
-
-
- /* Interface Elements */
- .game {
-    width: 35em;
-    margin: auto;
- }
-
- .cards, .controls {
-    position: relative;
- }
-
- .cards {
-   top: 5em;
- }
- .controls {
-   top: 14em;
- }
-
-.card-rank {
-  position:absolute;
-}
-
-.card-hold {
-  display: inline-block;
-  width: 6em;
-  margin-right: 1em;
-  text-align: center;
-}
-
-.card-deal {
-  display: block;
-  width: 200px;
-  font-size: 21px;
-  margin: 30px auto;
 }
 
 
 /* Card basic structure and positioning (Including front and back) */
 /* Slightly modified version from the original: http://selfthinker.github.io/CSS-Playing-Cards/ (CC BY-SA) */
+.card-group {
+  transform-style: preserve-3d;
+  transform-origin: 3em 4.5em; /* half of card size */
+}
 
 .card {
   width: 6em;
@@ -164,8 +138,6 @@ h1 {
   background-color: #FFF;
 }
 
-
-/* Playing Card-style layouts */
 .card:after {
   position: absolute;
   bottom: .25em;
