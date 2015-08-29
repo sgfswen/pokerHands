@@ -1,10 +1,10 @@
 /*
- * Basic layout
- */
+* Basic layout
+*/
 
- * {
-   box-sizing: border-box;
- }
+* {
+  box-sizing: border-box;
+}
 body {
   background: #eee;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -15,7 +15,7 @@ h1 {
   font-size: 2em;
 }
 
- /* Interface Elements */
+/* Interface Elements */
 .game {
   width: 35em;
   margin: auto;
@@ -50,57 +50,115 @@ h1 {
 
 
 /*
- * Transition Group Animations
- */
-@keyframes card-in {
+* Transition Group Animations
+*/
+@-webkit-keyframes card-in {
   0% {
-   transform: rotateY(180deg) translateY(-9em);
-   opacity:0
+    -webkit-transform: rotateY(180deg) translateY(-9em);
+            transform: rotateY(180deg) translateY(-9em);
+    opacity:0;
+    filter: alpha(opacity=0)
   }
   60% {
-    transform: rotateY(180deg) translateY(0);
-    opacity:1
+    -webkit-transform: rotateY(180deg) translateY(0);
+            transform: rotateY(180deg) translateY(0);
+    opacity:1;
+    filter: alpha(opacity=100)
   }
   100% {
-   transform: rotateY(0deg) translateY(0);
-   opacity:1
+    -webkit-transform: rotateY(0deg) translateY(0);
+            transform: rotateY(0deg) translateY(0);
+    opacity:1;
+    filter: alpha(opacity=100)
+  }
+}
+@keyframes card-in {
+  0% {
+    -webkit-transform: rotateY(180deg) translateY(-9em);
+            transform: rotateY(180deg) translateY(-9em);
+    opacity:0;
+    filter: alpha(opacity=0)
+  }
+  60% {
+    -webkit-transform: rotateY(180deg) translateY(0);
+            transform: rotateY(180deg) translateY(0);
+    opacity:1;
+    filter: alpha(opacity=100)
+  }
+  100% {
+    -webkit-transform: rotateY(0deg) translateY(0);
+            transform: rotateY(0deg) translateY(0);
+    opacity:1;
+    filter: alpha(opacity=100)
+  }
+}
+
+@-webkit-keyframes card-out {
+  0% {
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+  }
+  40% {
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+    opacity:1;
+    filter: alpha(opacity=100)
+  }
+  100% {
+    -webkit-transform: rotateY(180deg) translateY(-9em);
+            transform: rotateY(180deg) translateY(-9em);
+    opacity: 0;
+    filter: alpha(opacity=0)
   }
 }
 
 @keyframes card-out {
   0% {
-   transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
   }
   40% {
-    transform: rotateY(180deg);
-    opacity:1
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+    opacity:1;
+    filter: alpha(opacity=100)
   }
   100% {
-   transform: rotateY(180deg) translateY(-9em);
-   opacity: 0
+    -webkit-transform: rotateY(180deg) translateY(-9em);
+            transform: rotateY(180deg) translateY(-9em);
+    opacity: 0;
+    filter: alpha(opacity=0)
   }
 }
 
 .card-enter {
-  animation-name: card-in;
-  animation-duration: 1s;
-  animation-delay: 1s;
-  animation-fill-mode: both;
+  -webkit-animation-name: card-in;
+          animation-name: card-in;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
 }
 
 .card-leave {
-  animation-name: card-out;
-  animation-duration: 1s;
+  -webkit-animation-name: card-out;
+          animation-name: card-out;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
 }
 
 
 /* Card basic structure and positioning (Including front and back) */
 /* Slightly modified version from the original: http://selfthinker.github.io/CSS-Playing-Cards/ (CC BY-SA) */
 .card-group {
-  transform-style: preserve-3d;
-  transform-origin: 3em 4.5em; /* half of card size */
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform-origin: 3em 4.5em;
+      -ms-transform-origin: 3em 4.5em;
+          transform-origin: 3em 4.5em; /* half of card size */
 }
-
 .card {
   width: 6em;
   height: 9em;
@@ -108,132 +166,117 @@ h1 {
   background: #FFF;
   border-radius: .5em;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-
 }
-
 /* hide back of pane during swap */
 .card.front, .card.back {
-	backface-visibility: hidden;
-	position: absolute;
-	top: 0;
-	left: 0;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-
 /* front pane, placed above back */
 .card.front {
-	z-index: 2;
-	/* for firefox 31 */
-	transform: rotateY(0deg);
+  z-index: 2;
+  /* for firefox 31 */
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
 }
-
-
 .card.back {
   /* back, initially hidden pane */
-	transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  background: -webkit-linear-gradient(315deg, #EC4444 25%, transparent 25%) -1em 0, -webkit-linear-gradient(225deg, #EC4444 25%, transparent 25%) -1em 0, -webkit-linear-gradient(135deg, #EC4444 25%, transparent 25%), -webkit-linear-gradient(45deg, #EC4444 25%, transparent 25%);
   background: linear-gradient(135deg, #EC4444 25%, transparent 25%) -1em 0,
-    linear-gradient(225deg, #EC4444 25%, transparent 25%) -1em 0,
-    linear-gradient(315deg, #EC4444 25%, transparent 25%),
-    linear-gradient(45deg, #EC4444 25%, transparent 25%);
+  linear-gradient(225deg, #EC4444 25%, transparent 25%) -1em 0,
+  linear-gradient(315deg, #EC4444 25%, transparent 25%),
+  linear-gradient(45deg, #EC4444 25%, transparent 25%);
   background-size: 2em 2em;
   background-color: #FFF;
 }
-
 .card:after {
   position: absolute;
   bottom: .25em;
   right: .15em;
   content: attr(data-index);
-  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
-
 /* Default to black for Spades and Clubs */
 .card-group span, .card:after {
-    display: block;
-    letter-spacing: -.1em;
-    text-align: center;
-    width: .8em;
-    line-height: .9;
+  display: block;
+  letter-spacing: -.1em;
+  text-align: center;
+  width: .8em;
+  line-height: .9;
 }
 /* Hearts and diamonds are red */
 .card.hearts, .card.diamonds {
-    color: #F00;
+  color: #F00;
 }
-
 /* 3 columns of pips, maximum of 4 pips per column */
 .card span:before, .card span:after {
-    width: .8em;
-    font-size: 1.75em;
-    height: 4em;
-    line-height: 9;
-    position: absolute;
-    top: .5em;
-    left: .55em;
-    overflow: hidden;
+  width: .8em;
+  font-size: 1.75em;
+  height: 4em;
+  line-height: 9;
+  position: absolute;
+  top: .5em;
+  left: .55em;
+  overflow: hidden;
 }
 .card.hearts span:before, .card.hearts .rank:after {
-    content: "♥ ♥ ♥ ♥"
+  content: "♥ ♥ ♥ ♥"
 }
 .card.diamonds span:before,.card.diamonds .rank:after {
-    content: "♦ ♦ ♦ ♦"
+  content: "♦ ♦ ♦ ♦"
 }
 .card.spades span:before,.card.spades .rank:after {
-    content: "♠ ♠ ♠ ♠"
+  content: "♠ ♠ ♠ ♠"
 }
 .card.clubs span:before,.card.clubs .rank:after {
-    content: "♣ ♣ ♣ ♣"
+  content: "♣ ♣ ♣ ♣"
 }
-
 /* Centre column of pips */
 .card .rank:after {
-    left: 1.3em;
+  left: 1.3em;
 }
 /* Right column of pips */
 .card .suit:before {
-    left: 2em;
+  left: 2em;
 }
-
 /* Four pips */
-.v8 span:before, .v9 span:before, .v10 span:before /* L/R: 8, 9, 10 */
-{
-    line-height: 1
+.v8 span:before, .v9 span:before, .v10 span:before {
+  line-height: 1
 }
-
 /* Three pips */
-.v6 span:before, .v7 span:before, /* L/R: 6, 7 */
-.v3 .rank:after /* C: 3 */
-{
-    line-height: 1.333;
+.v6 span:before, .v7 span:before, .v3 .rank:after {
+  line-height: 1.333;
 }
-
 /* Two pips */
-.v4 span:before,.v5 span:before,/* L/R: 4, 5 */
-.v2 .rank:after,.v10 .rank:after/* C: 2, 10 */
-{
-    line-height: 2;
+.v4 span:before,.v5 span:before, .v2 .rank:after,.v10 .rank:after {
+  line-height: 2;
 }
-
 /* One pip */
-.v14 .rank:after,.v5 .rank:after,.v7 .rank:after,.v9 .rank:after/* C: A, 5, 7, 9 */
-{
-    line-height: 4;
+.v14 .rank:after,.v5 .rank:after,.v7 .rank:after,.v9 .rank:after {
+  line-height: 4;
 }
-
 /* Face cards */
 .v11 .suit:after,.v12 .suit:after,.v13 .suit:after, .v14 .rank:after {
-    width: .95em;
-    height: 1.2em;
-    font: 5.2em/1.2 Georgia, serif;
-    text-align: center;
-    left: .1em;
-    top: .2em;
+  width: .95em;
+  height: 1.2em;
+  font: 5.2em/1.2 Georgia, serif;
+  text-align: center;
+  left: .1em;
+  top: .2em;
 }
-
 .v11 .suit:after {
-    content: "♟"
+  content: "♟"
 }
 .v12 .suit:after {
-    content: "♛"
+  content: "♛"
 }
 .v13 .suit:after {
-    content: "♚"
+  content: "♚"
 }
